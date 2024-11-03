@@ -32,52 +32,56 @@ bot.start(async (ctx) => {
 - ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴡʜᴀᴛ ʏᴏᴜ ɴᴇᴇᴅ
 - ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ ғᴏʀ ᴜᴘᴅᴀᴛᴇs
 
-"ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ [ʟxᴅᴇᴠs](https://github.com/LX-Royal-Empire/TeleVerse-JS)"`;
+"ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️ ʙʏ ʟx"`;
 
     const aboutMessage = `
 "ᴀʙᴏᴜᴛ ᴜs" 📖
 
 - ᴠᴇʀsɪᴏɴ: 1.0.0
-- ᴅᴇᴠᴇʟᴏᴘᴇʀ: [ʟx](https://github.com/LX-Royal-Empire/TeleVerse-JS)
+- ᴅᴇᴠᴇʟᴏᴘᴇʀ: ʟx
 - ʟᴀɴɢᴜᴀɢᴇ: ɴᴏᴅᴇᴊs
 
 "ᴛʜᴀɴᴋs ғᴏʀ ᴜsɪɴɢ ᴏᴜʀ ʙᴏᴛ" 🌟`;
 
-    // ---> Define buttons
-    const homeKeyboard = {
-        inline_keyboard: [
-            [channelButton],
-            [supportButton],
-            [{ text: 'ᴀʙᴏᴜᴛ', callback_data: 'about' }]
-        ]
-    };
-
-    const aboutKeyboard = {
-        inline_keyboard: [
-            [{ text: 'ʙᴀᴄᴋ', callback_data: 'home' }]
-        ]
-    };
-
     await ctx.reply(homeMessage, {
         parse_mode: 'HTML',
-        reply_markup: homeKeyboard
+        disable_web_page_preview: true,
+        ...Markup.inlineKeyboard([
+            [channelButton],
+            [Markup.button.callback('ᴀʙᴏᴜᴛ', 'about')]
+        ])
     });
 });
 
 // Handle callback queries
 bot.action('about', async (ctx) => {
-    await ctx.editMessageText(aboutMessage, {
-        parse_mode: 'HTML',
-        reply_markup: aboutKeyboard
-    });
+    try {
+        await ctx.editMessageText(aboutMessage, {
+            parse_mode: 'HTML',
+            disable_web_page_preview: true,
+            ...Markup.inlineKeyboard([
+                [Markup.button.callback('ʙᴀᴄᴋ', 'home')]
+            ])
+        });
+    } catch (error) {
+        console.error('Error in about action:', error);
+    }
 });
 
 bot.action('home', async (ctx) => {
-    const firstName = ctx.callbackQuery.from.first_name;
-    await ctx.editMessageText(homeMessage.replace('${firstName}', firstName), {
-        parse_mode: 'HTML',
-        reply_markup: homeKeyboard
-    });
+    try {
+        const firstName = ctx.callbackQuery.from.first_name;
+        await ctx.editMessageText(homeMessage, {
+            parse_mode: 'HTML',
+            disable_web_page_preview: true,
+            ...Markup.inlineKeyboard([
+                [channelButton],
+                [Markup.button.callback('ᴀʙᴏᴜᴛ', 'about')]
+            ])
+        });
+    } catch (error) {
+        console.error('Error in home action:', error);
+    }
 });
 
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
