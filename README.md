@@ -1,6 +1,6 @@
 <div align="center">
 
-![TeleVerse-JS Logo](https://via.placeholder.com/150x150.png?text=TeleVerse-JS)
+![TeleVerse-JS Logo](https://i.ibb.co/pbjSKHx/34e737c9-35f0-49f0-9d0a-f0d937e41918.jpg)
 
 A lightning-fast Telegram bot template powered by Node.js, optimized for Vercel deployment.
 
