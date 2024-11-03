@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #252526;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .json-key {
+            color: #9cdcfe;
+        }
+
+        .json-string {
+            color: #ce9178;
+        }
+
+        .json-number {
+            color: #b5cea8;
+        }
+
+        .json-boolean {
+            color: #569cd6;
+        }
+
+        .bracket {
+            color: #d4d4d4;
+        }
+
+        .comma {
+            color: #d4d4d4;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-left: 2rem;
+        }
+
+        .title {
+            color: #569cd6;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Bot Information</div>
+        <pre><span class="bracket">{</span>
+    <span class="json-key">"status"</span>: <span class="json-string">"online"</span><span class="comma">,</span>
+    <span class="json-key">"name"</span>: <span class="json-string">"TeleVerse"</span><span class="comma">,</span>
+    <span class="json-key">"username"</span>: <span class="json-string">"@TeleVerseRobot"</span><span class="comma">,</span>
+    <span class="json-key">"version"</span>: <span class="json-string">"1.0.0"</span><span class="comma">,</span>
+    <span class="json-key">"environment"</span>: <span class="json-string">"production"</span><span class="comma">,</span>
+    <span class="json-key">"uptime"</span>: <span class="json-string">"24h"</span><span class="comma">,</span>
+    <span class="json-key">"features"</span>: <span class="bracket">{</span>
+        <span class="json-key">"commands"</span>: <span class="json-boolean">true</span><span class="comma">,</span>
+        <span class="json-key">"inline_queries"</span>: <span class="json-boolean">true</span><span class="comma">,</span>
+        <span class="json-key">"groups"</span>: <span class="json-boolean">true</span><span class="comma">,</span>
+        <span class="json-key">"channels"</span>: <span class="json-boolean">true</span>
+    <span class="bracket">}</span><span class="comma">,</span>
+    <span class="json-key">"links"</span>: <span class="bracket">{</span>
+        <span class="json-key">"channel"</span>: <span class="json-string">"https://t.me/LXRoyalEmpire"</span><span class="comma">,</span>
+        <span class="json-key">"support"</span>: <span class="json-string">"https://t.me/LXRoyalEmpire"</span>
+    <span class="bracket">}</span><span class="comma">,</span>
+    <span class="json-key">"last_updated"</span>: <span class="json-string">"2024-11-03 12:00:00 UTC"</span>
+<span class="bracket">}</span></pre>
+    </div>
+</body>
+</html>
