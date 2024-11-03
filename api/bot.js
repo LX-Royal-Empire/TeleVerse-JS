@@ -1,10 +1,11 @@
 const { Telegraf, Markup } = require('telegraf');
+require('dotenv').config();
 
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
 
 // Define your bot token and domain (Important)
-const BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';
-const BOT_DOMAIN = 'https://your.vercel.app/';
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const BOT_DOMAIN = process.env.DOMAIN;
 
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
 
@@ -13,10 +14,16 @@ const bot = new Telegraf(BOT_TOKEN);
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
 
 // Define channel button
-const channelButton = Markup.button.url('Join Channel 🌟', 'https://t.me/YOUR_CHANNEL');
-const supportButton = Markup.button.url('Support Group 💭', 'https://t.me/YOUR_SUPPORT_GROUP');
+const channelButton = Markup.button.url('Join Channel 🌟', 'https://t.me/LXRoyalEmpire');
+const supportButton = Markup.button.url('Support Group 💭', 'https://t.me/LXRoyalEmpire');
 
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// Get bot information
+let botInfo = null;
+bot.telegram.getMe().then(info => {
+    botInfo = info;
+});
 
 // Start Command
 bot.start(async (ctx) => {
@@ -42,6 +49,29 @@ Made with ❤️ by @YourUsername
             ]
         }
     });
+});
+
+// -------------------------------------------------------------------------------------------------------------------------------------------- //
+
+// Handle root domain requests
+bot.webhookCallback('/')(async (req, res) => {
+    const status = {
+        bot: {
+            username: botInfo?.username,
+            first_name: botInfo?.first_name,
+            description: botInfo?.description,
+            can_join_groups: botInfo?.can_join_groups,
+            can_read_all_group_messages: botInfo?.can_read_all_group_messages,
+            supports_inline_queries: botInfo?.supports_inline_queries
+        },
+        status: "online",
+        telegram_link: `https://t.me/${botInfo?.username}`,
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString()
+    };
+    
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(status, null, 2));
 });
 
 // -------------------------------------------------------------------------------------------------------------------------------------------- //
